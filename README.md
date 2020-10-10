@@ -1,11 +1,41 @@
-# Reshuffle FastSpring Connector
+# reshuffle-fastspring-connector
+
+[Code](https://github.com/reshufflehq/reshuffle-fastspring-connector) |
+[npm](https://www.npmjs.com/package/reshuffle-fastspring-connector) |
+[Code sample](https://github.com/reshufflehq/reshuffle-fastspring-connector/examples)
+
+`npm install reshuffle-fastspring-connector`
+
+### Reshuffle FastSpring Connector
 
 This package contains a [Resshufle](https://github.com/reshufflehq/reshuffle)
 connector to [fastspring.com](https://fastspring.com/). It can be used to
 configure and manage online store and purchases, and privdes access to the
 full [FastSpring API](https://fastspring.com/docs/fastspring-api/).
 
-_Actions_:
+This example gets the product list from Fast Spring:
+
+```js
+const { Reshuffle } = require('reshuffle')
+const { FastSpringConnector } = require('reshuffle-fastspring-connector')
+
+;(async () => {
+  const app = new Reshuffle()
+  const fs = new FastSpringConnector(app, {
+    username: process.env.FASTSPRING_USERNAME,
+    password: process.env.FASTSPRING_PASSWORD,
+  })
+
+  const products = await fs.getProductList()
+  console.log(products)
+})()
+```
+
+#### Table of Contents
+
+[Configuration](#configuration) Configuration options
+
+_Connector actions_:
 
 [deleteProduct](#deleteProduct) Delete a product
 
@@ -29,16 +59,16 @@ _REST_:
 
 [POST](#POST) Direct REST POST
 
-## Construction
+##### <a name="configuration"></a>Configuration options
 
 ```js
 const app = new Reshuffle()
 const fastSpringConnector = new FastSpringConnector(app)
 ```
 
-## Action Details
+#### Connector actions
 
-### <a name="deleteProduct"></a>Delete Product action
+##### <a name="deleteProduct"></a>Delete Product action
 
 _Definition:_
 
@@ -56,7 +86,7 @@ await fastSpringConnector.deleteProduct('my-product')
 
 Delete a product from the store.
 
-### <a name="getLocalizedPrice"></a>Get Localized Price action
+##### <a name="getLocalizedPrice"></a>Get Localized Price action
 
 _Definition:_
 
@@ -77,7 +107,7 @@ Get the price for a product in a specific country. If a price in local
 currency was not defined for the product, then the stored price is
 automaically converted into local currency.
 
-### <a name="getProductInfo"></a>Get Product Info action
+##### <a name="getProductInfo"></a>Get Product Info action
 
 _Definition:_
 
@@ -96,7 +126,7 @@ const info = await fastSpringConnector.getProductInfo('my-product')
 Get the full product information. See [updateProduct](#updateProduct) below
 for details.
 
-### <a name="getProductList"></a>Get Product List action
+##### <a name="getProductList"></a>Get Product List action
 
 _Definition:_
 
@@ -112,7 +142,7 @@ const list = await fastSpringConnector.getProductist()
 
 Get a list of product IDs for all the products in your store.
 
-### <a name="updateProduct"></a>Update Product action
+##### <a name="updateProduct"></a>Update Product action
 
 _Definition:_
 
@@ -146,7 +176,7 @@ added and new values for exsiting fields are updated.
 
 If no product with the specified ID exists, then a new object is created.
 
-### <a name="updateProducts"></a>Update Products action
+##### <a name="updateProducts"></a>Update Products action
 
 _Definition:_
 
@@ -169,7 +199,7 @@ Create or update multiple products using product info objects. A full
 description of the product information object can be found
 [here](https://fastspring.com/docs/products/#update).
 
-### <a name="updateSimpleProduct"></a>Update Simple Product action
+##### <a name="updateSimpleProduct"></a>Update Simple Product action
 
 _Definition:_
 
@@ -191,9 +221,9 @@ A simplified interface for creating or updating product information. For full
 control over product info, use [updateSimpleProduct](#updateSimpleProduct)
 above.
 
-## REST Details
+#### REST
 
-### <a name="DELETE"></a>DELETE action
+##### <a name="DELETE"></a>DELETE action
 
 _Definition:_
 
@@ -212,7 +242,7 @@ const response = await fastSpringConnector.DELETE(`products/${id}`)
 Send a DELETE request. Returns a JavaScript object for JSON responses or text
 string otherwise. Throws an exception if a non-2xx HTTP code is returned.
 
-### <a name="GET"></a>GET action
+##### <a name="GET"></a>GET action
 
 _Definition:_
 
@@ -231,7 +261,7 @@ const response = await fastSpringConnector.GET(`products/${id}`)
 Send a GET request. Returns a JavaScript object for JSON responses or text
 string otherwise. Throws an exception if a non-2xx HTTP code is returned.
 
-### <a name="POST"></a>POST action
+##### <a name="POST"></a>POST action
 
 _Definition:_
 
