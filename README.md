@@ -8,9 +8,9 @@
 
 ### Reshuffle FastSpring Connector
 
-This package contains a [Resshufle](https://github.com/reshufflehq/reshuffle)
+This package contains a [Reshuffle](https://github.com/reshufflehq/reshuffle)
 connector to [fastspring.com](https://fastspring.com/). It can be used to
-configure and manage online store and purchases, and privdes access to the
+configure and manage online store and purchases, and provides access to the
 full [FastSpring API](https://fastspring.com/docs/fastspring-api/).
 
 This example gets the product list from Fast Spring:
@@ -171,7 +171,7 @@ product information object can be found
 [here](https://fastspring.com/docs/products/#update).
 
 Update is an additive operation, i.e. fields that are not included in the
-`info` object are not removed from the object record. Rather new fields are
+`info` object are not removed from the object record. Rather, new fields are
 added and new values for exsiting fields are updated.
 
 If no product with the specified ID exists, then a new object is created.
