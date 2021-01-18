@@ -2,7 +2,7 @@
 
 [Code](https://github.com/reshufflehq/reshuffle-fastspring-connector) |
 [npm](https://www.npmjs.com/package/reshuffle-fastspring-connector) |
-[Code sample](https://github.com/reshufflehq/reshuffle-fastspring-connector/examples)
+[Code sample](https://github.com/reshufflehq/reshuffle-fastspring-connector/tree/master/examples)
 
 `npm install reshuffle-fastspring-connector`
 
